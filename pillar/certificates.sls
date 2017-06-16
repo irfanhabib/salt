@@ -47,3 +47,13 @@ ssl:
 
   kube_proxy_key: '/etc/pki/kube-proxy.key'
   kube_proxy_crt: '/etc/pki/kube-proxy.crt'
+
+# we can add certificates for particular registries like this:
+#
+# registries:
+#  - "something.com:5000": |
+#    <CA contents>
+#  - "some-other.com:6000": |
+#    <CA contents>
+#
+registries: []
