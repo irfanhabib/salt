@@ -21,7 +21,6 @@ base:
     - users
     - cert
     - etcd
-    - flannel
     - docker
     - container-feeder
     - kubectl-config

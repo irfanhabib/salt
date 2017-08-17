@@ -13,8 +13,6 @@ drain-kubelet:
       - KUBECONFIG: {{ pillar['paths']['kubeconfig'] }}
     - check_cmd:
       - /bin/true
-    - require:
-      - file: {{ pillar['paths']['kubeconfig'] }}
 
 kubelet:
   service.dead:

@@ -11,11 +11,14 @@ KUBE_CONTROLLER_MANAGER_ARGS="\
     --cluster-name=kubernetes \
     --cluster-cidr={{ pillar['cluster_cidr'] }} \
     --service-account-private-key-file={{ pillar['paths']['service_account_key'] }} \
+    --service-cluster-ip-range={{ pillar['services_cidr'] }} \
+    --allocate-node-cidrs=true \
+    --node-cidr-mask-size={{ pillar['cluster_cidr_len'] }} \
     --root-ca-file={{ pillar['ssl']['ca_file'] }} \
 {% if salt['pillar.get']('cloud:provider', '') != '' -%}
-               --cloud-provider={{ pillar['cloud']['provider'] }} \
+    --cloud-provider={{ pillar['cloud']['provider'] }} \
   {% if salt['pillar.get']('cloud:provider', '') == 'openstack' -%}
-               --cloud-config=/etc/kubernetes/openstack-config \
+    --cloud-config=/etc/kubernetes/openstack-config \
   {% endif -%}
 {% endif -%}
     {{ salt['pillar.get']('components:controller-manager:args', '') }}"
